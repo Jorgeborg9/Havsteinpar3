@@ -76,7 +76,6 @@ const facilityCards = [
     usage: [
       'Drop-in (ingen booking)',
       'Ballautomat (30 baller ca. 28 kr)',
-      'Åpner når forholdene tillater det',
     ],
     rules: [
       'Driver er forbudt for herrespillere',
