@@ -70,9 +70,9 @@ const facilityCards = [
   {
     name: 'Driving range',
     tag: 'For deg som vil trene',
-    status: 'Stengt',
-    statusTone: 'closed',
-    hours: 'Midlertidig stengt',
+    status: 'Åpen',
+    statusTone: 'open',
+    hours: 'Hver dag 07:00–22:00',
     usage: [
       'Drop-in (ingen booking)',
       'Ballautomat (30 baller ca. 28 kr)',
@@ -83,8 +83,7 @@ const facilityCards = [
       'Junior og dame kan bruke driver',
       'Følg anvisninger på området',
     ],
-    greenkeeperComment:
-      'Driving range er foreløpig vinterstengt. Bakken er fortsatt for bløt til at vi kan kjøre med balloppsamler, og vi jobber også med nett på siden av rangen. Vi åpner så raskt forholdene tillater det.',
+    greenkeeperComment: 'Ingen kommentar foreløpig.',
     ctaLabel: 'Se range-priser',
     ctaHref: '#pricing',
     variant: 'range',
@@ -286,12 +285,12 @@ export default function App() {
                 <p className="hero-teaser__label">Driving Range</p>
                 <div className="hero-teaser__status-row">
                   <span
-                    className="facility-card__status-dot facility-card__status-dot--closed"
+                    className="facility-card__status-dot facility-card__status-dot--open"
                     aria-hidden="true"
                   />
-                  <p className="hero-teaser__status">Stengt</p>
+                  <p className="hero-teaser__status">Åpen for drop-in</p>
                 </div>
-                <p className="hero-teaser__detail">Midlertidig stengt</p>
+                <p className="hero-teaser__detail">Hver dag 07:00–22:00</p>
               </article>
             </div>
           </div>
