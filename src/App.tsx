@@ -74,15 +74,19 @@ const facilityCards = [
     statusTone: 'open',
     hours: 'Hver dag 07:00–22:00',
     usage: [
-      'Drop-in (ingen booking)',
-      'Ballautomat (30 baller ca. 28 kr)',
+      '30 baller = 28 kr (liten bøtte)',
+      'Stor bøtte = 2 × 30 baller',
     ],
     rules: [
       'Driver er forbudt for herrespillere',
-      'Junior og dame kan bruke driver',
-      'Følg anvisninger på området',
+      'Tillatt: jern, hybrider og fairway-wooder',
+      'Ingen lengdebegrensning på slag med wooder og jern',
     ],
-    greenkeeperComment: 'Ingen kommentar foreløpig.',
+    rulesNote:
+      'Unntak: gjelder ikke damespillere, barn (< ca. 13 år) og eldre herrespillere med slaglengde ca. 170–180 m',
+    greenkeeperComment:
+      'Noe begrenset bruk da baller samles med traktor. Ikke slå når traktor kjører.',
+    greenkeeperWarning: 'Knust glass = kr 15.000,-!',
     ctaLabel: 'Se range-priser',
     ctaHref: '#pricing',
     variant: 'range',
@@ -357,6 +361,9 @@ export default function App() {
                     <div className="facility-card__comment">
                       <p className="facility-card__section-title">Kommentar fra greenkeeper</p>
                       <p>{facility.greenkeeperComment}</p>
+                      {facility.greenkeeperWarning ? (
+                        <p className="facility-card__comment-warning">{facility.greenkeeperWarning}</p>
+                      ) : null}
                     </div>
                   ) : null}
 
@@ -393,6 +400,9 @@ export default function App() {
                             <li key={point}>{point}</li>
                           ))}
                         </ul>
+                        {facility.rulesNote ? (
+                          <p className="facility-card__section-note">{facility.rulesNote}</p>
+                        ) : null}
                       </div>
                     </>
                   )}
@@ -448,6 +458,9 @@ export default function App() {
                   <p className="pricing-panel__subtitle">Betaling</p>
                   <p>Vipps: 89485</p>
                   <p>Får du ikke brukt Vipps? Ring +47 91172405</p>
+                  <p className="pricing-panel__fine-note">
+                    Manglende betaling kan føre til gebyr på kr 100 eller bortvisning.
+                  </p>
                 </div>
               </article>
 

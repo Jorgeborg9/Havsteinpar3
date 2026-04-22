@@ -615,6 +615,13 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
   line-height: 1.5;
 }
 
+.pricing-panel__fine-note {
+  margin-top: 0.35rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(31, 42, 37, 0.52);
+}
+
 .pricing-range {
   display: grid;
   gap: 0.4rem;
@@ -732,7 +739,8 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
 }
 
 .facility-card__section-intro,
-.facility-card__section-example {
+.facility-card__section-example,
+.facility-card__section-note {
   margin: 0;
   color: rgba(31, 42, 37, 0.52);
 }
@@ -774,6 +782,12 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
   margin-top: 0.32rem;
 }
 
+.facility-card__section-note {
+  font-size: 0.79rem;
+  line-height: 1.45;
+  margin-top: 0.42rem;
+}
+
 .facility-card__cta {
   width: fit-content;
   margin-top: auto;
@@ -800,6 +814,13 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
   font-size: 0.9rem;
   line-height: 1.5;
   color: rgba(31, 42, 37, 0.58);
+}
+
+.facility-card__comment-warning {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #8b2d21;
 }
 
 @keyframes status-pulse {
