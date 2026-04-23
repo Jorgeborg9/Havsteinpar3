@@ -1,3 +1,5 @@
+import { siteContent } from '../content/siteContent';
+
 interface SectionHeadingProps {
   title: string;
   description: string;
@@ -6,7 +8,7 @@ interface SectionHeadingProps {
 export function SectionHeading({ title, description }: SectionHeadingProps) {
   return (
     <div className="section-heading">
-      <p className="section-label">Havstein Par3</p>
+      <p className="section-label">{siteContent.businessName}</p>
       <h2>{title}</h2>
       <p className="section-description">{description}</p>
     </div>

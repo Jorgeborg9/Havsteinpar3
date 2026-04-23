@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { SectionHeading } from './components/SectionHeading';
 import { PartnerLogoCard } from './components/PartnerLogoCard';
 import { ReviewCard } from './components/ReviewCard';
+import { siteContent } from './content/siteContent';
 import heroImage from './assets/images/par3hero.jpg';
 import par3Logo from './assets/images/Par3logo.png';
 import admentoLogo from './assets/images/admento logo web.jpg';
@@ -13,85 +14,6 @@ import courseImageTwo from './assets/images/trondheimpar3golf2016b.jpg';
 import courseImageThree from './assets/images/Trondheim par3golf range.jpg';
 import courseImageFour from './assets/images/trondheimpar3golf2016c.jpg';
 import courseImageFive from './assets/images/trondheim par3golf hull 8b.jpg';
-
-const facilityCards = [
-  {
-    name: 'Golfbanen',
-    tag: 'For deg som vil spille',
-    status: 'Åpen',
-    statusTone: 'open',
-    hours: 'Hver dag 09:00–20:00',
-    greenkeeperComment: 'Ingen kommentar foreløpig.',
-    details: [
-      {
-        title: 'Booking og spill',
-        points: [
-          'Booking anbefales ved bra vær',
-          'Drop-in mulig ved ledig kapasitet',
-          'Kø for drop-in ved utslag 1 (venstre side)',
-          'Maks 4 spillere per starttid',
-          'Møt opp 10 min før start',
-        ],
-      },
-      {
-        title: 'Baneregler',
-        points: [
-          '9 hull par 3-bane',
-          'Bruk greengaffel og reparer merker',
-          'Legg tilbake torv',
-          'Spill hensynsfullt ved våt bane',
-          'Hold tempo (løft ball etter 5 slag)',
-        ],
-      },
-      {
-        title: 'Under 18 år',
-        intro:
-          'Vi har utfordringer med unge spillere som ikke følger regler. Derfor må alle under 18 registreres før spill.',
-        points: [
-          'Runde må bestilles via nettside eller drop-in',
-          'Før start: send SMS til 91172405',
-          'Oppgi navn og starttid (maks 4 spillere)',
-          'Oppgi hvordan det er betalt',
-        ],
-        example: 'Eksempel: 12:30 Per, Hans, Nils – vipps fra Per 160 kr',
-      },
-      {
-        title: 'Turister',
-        points: [
-          'Ring +47 91172405 før spill',
-          'Mulighet for å leie utstyr',
-        ],
-      },
-    ],
-    ctaLabel: 'Book starttid',
-    ctaHref: '#booking',
-    variant: 'course',
-  },
-  {
-    name: 'Driving range',
-    tag: 'For deg som vil trene',
-    status: 'Åpen',
-    statusTone: 'open',
-    hours: 'Hver dag 07:00–22:00',
-    usage: [
-      '30 baller = 28 kr (liten bøtte)',
-      'Stor bøtte = 2 × 30 baller',
-    ],
-    rules: [
-      'Driver er forbudt for herrespillere',
-      'Tillatt: jern, hybrider og fairway-wooder',
-      'Ingen lengdebegrensning på slag med wooder og jern',
-    ],
-    rulesNote:
-      'Unntak: gjelder ikke damespillere, barn (< ca. 13 år) og eldre herrespillere med slaglengde ca. 170–180 m',
-    greenkeeperComment:
-      'Noe begrenset bruk da baller samles med traktor. Ikke slå når traktor kjører.',
-    greenkeeperWarning: 'Knust glass = kr 15.000,-!',
-    ctaLabel: 'Se range-priser',
-    ctaHref: '#pricing',
-    variant: 'range',
-  },
-];
 
 const steps = [
   {
@@ -111,23 +33,23 @@ const steps = [
 const gallery = [
   {
     src: courseImageOne,
-    alt: 'Nærspillområde på Havstein med green og flagg',
+    alt: `Nærspillområde på ${siteContent.businessName} med green og flagg`,
   },
   {
     src: courseImageTwo,
-    alt: 'Oversiktsbilde fra par 3-banen på Havstein',
+    alt: `Oversiktsbilde fra par 3-banen på ${siteContent.businessName}`,
   },
   {
     src: courseImageThree,
-    alt: 'Driving rangen på Havstein',
+    alt: `Driving rangen på ${siteContent.businessName}`,
   },
   {
     src: courseImageFour,
-    alt: 'Banemiljø på Havstein i sommersesong',
+    alt: `Banemiljø på ${siteContent.businessName} i sommersesong`,
   },
   {
     src: courseImageFive,
-    alt: 'Hullområde på Havstein par 3',
+    alt: `Hullområde på ${siteContent.businessName}`,
   },
 ];
 
@@ -153,43 +75,11 @@ const partners = [
   { name: 'Værness', logo: vaernessLogo },
 ];
 
-const reviews = [
-  {
-    rating: 5,
-    text: 'Relativt billig, sentrumsnært og med en fantastisk utsikt!',
-    name: 'Øystein Aas',
-  },
-  {
-    rating: 5,
-    text: 'God range og bane for prisen! Tilgjengelig og enkelt.',
-    name: 'Peter Jiro Grieg Toyomasu',
-  },
-  {
-    rating: 5,
-    text: 'Fantastisk personale, fin green og topp stemning.',
-    name: 'Mads Iversen',
-  },
-  {
-    rating: 5,
-    text: 'Kjempefint der nå, ut å spill golf folkens.',
-    name: 'Rigmor Bøkseth Monge',
-  },
-  {
-    rating: 5,
-    text: 'Fin plass for golf med flott utsikt over Trondheim. 9 hulls bane som tar ca 1 time.',
-    name: 'Wenche Sivertsen',
-  },
-  {
-    rating: 4,
-    text: 'Fin utsikt herfra på nyttårsaften, ellers en vakker plass.',
-    name: 'Reidar Angell Hansen',
-  },
-];
-
 export default function App() {
   const reviewsStripRef = useRef<HTMLDivElement | null>(null);
   const [desktopReviews, setDesktopReviews] = useState(false);
   const [reviewStart, setReviewStart] = useState(0);
+  const businessName = siteContent.businessName;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1180px)');
@@ -207,7 +97,7 @@ export default function App() {
       return;
     }
 
-    const maxStart = Math.max(0, reviews.length - 4);
+    const maxStart = Math.max(0, siteContent.reviews.cards.length - 4);
     const intervalId = window.setInterval(() => {
       setReviewStart((current) => (current >= maxStart ? 0 : current + 1));
     }, 3800);
@@ -244,7 +134,7 @@ export default function App() {
         <div className="container hero__inner">
           <div className="hero-bar" aria-label="Toppnavigasjon">
             <a className="hero-bar__brand" href="/">
-              <img src={par3Logo} alt="Havstein Par 3" />
+              <img src={par3Logo} alt={businessName} />
             </a>
             <a className="hero-bar__link" href="#">
               <span className="sr-only">Facebook</span>
@@ -258,42 +148,46 @@ export default function App() {
           </div>
 
           <div className="hero__content">
-            <p className="hero__eyebrow">PAR 3-BANE OG DRIVING RANGE</p>
-            <h1>Golf rett utenfor Trondheim</h1>
-            <p className="hero__text">Spill en rask runde eller ta en treningsøkt på rangen.</p>
+            <p className="hero__eyebrow">{siteContent.hero.eyebrow}</p>
+            <h1>{siteContent.hero.title}</h1>
+            <p className="hero__text">{siteContent.hero.subtitle}</p>
 
             <div className="hero__actions">
-              <a className="button button--primary" href="#booking">
-                Book starttid
+              <a className="button button--primary" href={siteContent.hero.primaryCta.href}>
+                {siteContent.hero.primaryCta.label}
               </a>
-              <a className="button button--ghost" href="#practical">
-                Se praktisk info
+              <a className="button button--ghost" href={siteContent.hero.secondaryCta.href}>
+                {siteContent.hero.secondaryCta.label}
               </a>
             </div>
 
             <div className="hero__facility-grid">
               <article className="hero-teaser hero-teaser--course">
-                <p className="hero-teaser__label">Golfbanen</p>
+                <p className="hero-teaser__label">{siteContent.hero.statusCards[0].title}</p>
                 <div className="hero-teaser__status-row">
                   <span
                     className="facility-card__status-dot facility-card__status-dot--open"
                     aria-hidden="true"
                   />
-                  <p className="hero-teaser__status">Åpen for spill</p>
+                  <p className="hero-teaser__status">
+                    {siteContent.hero.statusCards[0].statusLabel}
+                  </p>
                 </div>
-                <p className="hero-teaser__detail">Hver dag 09:00–20:00</p>
+                <p className="hero-teaser__detail">{siteContent.hero.statusCards[0].detail}</p>
               </article>
 
               <article className="hero-teaser hero-teaser--range">
-                <p className="hero-teaser__label">Driving Range</p>
+                <p className="hero-teaser__label">{siteContent.hero.statusCards[1].title}</p>
                 <div className="hero-teaser__status-row">
                   <span
                     className="facility-card__status-dot facility-card__status-dot--open"
                     aria-hidden="true"
                   />
-                  <p className="hero-teaser__status">Åpen for drop-in</p>
+                  <p className="hero-teaser__status">
+                    {siteContent.hero.statusCards[1].statusLabel}
+                  </p>
                 </div>
-                <p className="hero-teaser__detail">Hver dag 07:00–22:00</p>
+                <p className="hero-teaser__detail">{siteContent.hero.statusCards[1].detail}</p>
               </article>
             </div>
           </div>
@@ -305,27 +199,28 @@ export default function App() {
           <div className="container">
             <div className="reviews-section__header">
               <SectionHeading
-                title="Hva folk sier om Havstein"
-                description="Et utvalg Google-anmeldelser fra spillere og besøkende."
+                title={siteContent.reviews.title}
+                description={siteContent.reviews.subtitle}
               />
               <div className="reviews-section__meta">
                 <div className="reviews-summary" aria-label="Google reviews sammendrag">
-                  <p className="reviews-summary__label">Google reviews</p>
-                  <p className="reviews-summary__score">4,1/5</p>
+                  <p className="reviews-summary__label">{siteContent.reviews.summaryLabel}</p>
+                  <p className="reviews-summary__score">{siteContent.reviews.summaryScore}</p>
                 </div>
-                <a className="reviews-section__link" href="#">
-                  Se alle Google-anmeldelser
+                <a className="reviews-section__link" href={siteContent.reviews.linkHref}>
+                  {siteContent.reviews.linkLabel}
                 </a>
               </div>
             </div>
 
             <div className="reviews-strip" aria-label="Google-anmeldelser" ref={reviewsStripRef}>
-              {reviews.map((review) => (
+              {siteContent.reviews.cards.map((review) => (
                 <ReviewCard
-                  key={`${review.name}-${review.text}`}
+                  key={`${review.name}-${review.quote}`}
                   rating={review.rating}
-                  text={review.text}
+                  text={review.quote}
                   name={review.name}
+                  sourceLabel={review.sourceLabel}
                 />
               ))}
             </div>
@@ -335,80 +230,58 @@ export default function App() {
         <section id="practical" className="section">
           <div className="container">
             <div className="section-heading practical-section__heading">
-              <p className="section-label">Havstein Par3</p>
-              <h2>Spill eller tren – enkelt på Havstein</h2>
+              <p className="section-label">{siteContent.playOrTrain.sectionLabel}</p>
+              <h2>{siteContent.playOrTrain.title}</h2>
             </div>
             <div className="facility-grid">
-              {facilityCards.map((facility) => (
+              {siteContent.playOrTrain.cards.map((facility) => (
                 <article
-                  key={facility.name}
+                  key={facility.title}
                   className={`facility-card facility-card--${facility.variant}`}
                 >
                   <div className="facility-card__header">
-                    <p className="facility-card__eyebrow">{facility.tag}</p>
-                    <h3>{facility.name}</h3>
+                    <p className="facility-card__eyebrow">{facility.eyebrow}</p>
+                    <h3>{facility.title}</h3>
                     <div className="facility-card__status-row">
                       <span
-                        className={`facility-card__status-dot facility-card__status-dot--${facility.statusTone}`}
+                        className={`facility-card__status-dot facility-card__status-dot--${facility.status}`}
                         aria-hidden="true"
                       />
-                      <span className="facility-card__status-text">{facility.status}</span>
+                      <span className="facility-card__status-text">{facility.statusLabel}</span>
                     </div>
                     <p className="facility-card__hours">{facility.hours}</p>
                   </div>
 
                   {facility.greenkeeperComment ? (
                     <div className="facility-card__comment">
-                      <p className="facility-card__section-title">Kommentar fra greenkeeper</p>
-                      <p>{facility.greenkeeperComment}</p>
-                      {facility.greenkeeperWarning ? (
-                        <p className="facility-card__comment-warning">{facility.greenkeeperWarning}</p>
+                      <p className="facility-card__section-title">{facility.greenkeeperComment.title}</p>
+                      <p>{facility.greenkeeperComment.text}</p>
+                      {facility.greenkeeperComment.warning ? (
+                        <p className="facility-card__comment-warning">
+                          {facility.greenkeeperComment.warning}
+                        </p>
                       ) : null}
                     </div>
                   ) : null}
 
-                  {facility.details ? (
-                    <div className="facility-card__detail-groups">
-                      {facility.details.map((group) => (
-                        <section key={group.title} className="facility-card__notes facility-card__notes--compact">
-                          <p className="facility-card__section-title">{group.title}</p>
-                          {group.intro ? <p className="facility-card__section-intro">{group.intro}</p> : null}
-                          <ul>
-                            {group.points.map((point) => (
-                              <li key={point}>{point}</li>
-                            ))}
-                          </ul>
-                          {group.example ? <p className="facility-card__section-example">{group.example}</p> : null}
-                        </section>
-                      ))}
-                    </div>
-                  ) : (
-                    <>
-                      <div className="facility-card__notes facility-card__notes--compact">
-                        <p className="facility-card__section-title">Bruk</p>
+                  <div className="facility-card__detail-groups">
+                    {facility.groups.map((group) => (
+                      <section key={group.title} className="facility-card__notes facility-card__notes--compact">
+                        <p className="facility-card__section-title">{group.title}</p>
+                        {group.intro ? <p className="facility-card__section-intro">{group.intro}</p> : null}
                         <ul>
-                          {facility.usage.map((point) => (
+                          {group.points.map((point) => (
                             <li key={point}>{point}</li>
                           ))}
                         </ul>
-                      </div>
+                        {group.note ? <p className="facility-card__section-note">{group.note}</p> : null}
+                        {group.example ? <p className="facility-card__section-example">{group.example}</p> : null}
+                      </section>
+                    ))}
+                  </div>
 
-                      <div className="facility-card__notes facility-card__notes--compact">
-                        <p className="facility-card__section-title">Regler</p>
-                        <ul>
-                          {facility.rules.map((point) => (
-                            <li key={point}>{point}</li>
-                          ))}
-                        </ul>
-                        {facility.rulesNote ? (
-                          <p className="facility-card__section-note">{facility.rulesNote}</p>
-                        ) : null}
-                      </div>
-                    </>
-                  )}
-
-                  <a className="button button--primary facility-card__cta" href={facility.ctaHref}>
-                    {facility.ctaLabel}
+                  <a className="button button--primary facility-card__cta" href={facility.cta.href}>
+                    {facility.cta.label}
                   </a>
                 </article>
               ))}
@@ -419,57 +292,44 @@ export default function App() {
         <section id="pricing" className="section section--accent">
           <div className="container">
             <SectionHeading
-              title="Priser for spill og trening"
-              description="Enkle priser for banen og rangen, med betaling samlet på ett sted."
+              title={siteContent.pricing.title}
+              description={siteContent.pricing.subtitle}
             />
             <div className="pricing-layout">
               <article className="pricing-panel pricing-panel--course">
-                <p className="pricing-panel__title">Golfbanen</p>
+                <p className="pricing-panel__title">{siteContent.pricing.course.title}</p>
 
                 <div className="pricing-table">
-                  <div className="pricing-row">
-                    <div>
-                      <p className="pricing-row__label">Voksen</p>
-                      <p className="pricing-row__sub">Runde 2: 50 kr</p>
+                  {siteContent.pricing.course.items.map((item) => (
+                    <div key={item.label} className="pricing-row">
+                      <div>
+                        <p className="pricing-row__label">{item.label}</p>
+                        <p className="pricing-row__sub">{item.sublabel}</p>
+                      </div>
+                      <p className="pricing-row__price">{item.price}</p>
                     </div>
-                    <p className="pricing-row__price">100 kr</p>
-                  </div>
-
-                  <div className="pricing-row">
-                    <div>
-                      <p className="pricing-row__label">Ungdom / student</p>
-                      <p className="pricing-row__sub">Runde 2: 40 kr</p>
-                    </div>
-                    <p className="pricing-row__price">80 kr</p>
-                  </div>
-
-                  <div className="pricing-row">
-                    <div>
-                      <p className="pricing-row__label">Barn (t.o.m. 12 år)</p>
-                      <p className="pricing-row__sub">Runde 2: 30 kr</p>
-                    </div>
-                    <p className="pricing-row__price">60 kr</p>
-                  </div>
+                  ))}
                 </div>
 
-                <p className="pricing-panel__note">Ungdom t.o.m. 20 år • Student t.o.m. 28 år</p>
+                <p className="pricing-panel__note">{siteContent.pricing.course.note}</p>
 
                 <div className="pricing-panel__payment">
-                  <p className="pricing-panel__subtitle">Betaling</p>
-                  <p>Vipps: 89485</p>
-                  <p>Får du ikke brukt Vipps? Ring +47 91172405</p>
+                  <p className="pricing-panel__subtitle">{siteContent.pricing.course.paymentTitle}</p>
+                  {siteContent.pricing.course.paymentLines.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
                   <p className="pricing-panel__fine-note">
-                    Manglende betaling kan føre til gebyr på kr 100 eller bortvisning.
+                    {siteContent.pricing.course.fineNote}
                   </p>
                 </div>
               </article>
 
               <article className="pricing-panel pricing-panel--range">
-                <p className="pricing-panel__title">Driving range</p>
+                <p className="pricing-panel__title">{siteContent.pricing.range.title}</p>
                 <div className="pricing-range">
-                  <p className="pricing-range__price">28 kr</p>
-                  <p className="pricing-range__label">Liten bøtte (30 baller)</p>
-                  <p className="pricing-range__note">Drop-in, ingen booking</p>
+                  <p className="pricing-range__price">{siteContent.pricing.range.price}</p>
+                  <p className="pricing-range__label">{siteContent.pricing.range.label}</p>
+                  <p className="pricing-range__note">{siteContent.pricing.range.note}</p>
                 </div>
               </article>
             </div>
@@ -480,9 +340,9 @@ export default function App() {
           <div className="container">
             <SectionHeading
               title="Fra anlegget"
-              description="Noen glimt fra banen, rangen og miljøet på Havstein."
+              description={`Noen glimt fra banen, rangen og miljøet på ${businessName}.`}
             />
-            <div className="gallery-strip" aria-label="Bildegalleri fra Havstein">
+            <div className="gallery-strip" aria-label={`Bildegalleri fra ${businessName}`}>
               {gallery.map((item, index) => (
                 <article
                   key={item.alt}
@@ -490,7 +350,9 @@ export default function App() {
                 >
                   <img src={item.src} alt={item.alt} />
                   <div className="gallery-card__overlay">
-                    <p className="gallery-card__caption">{index === 0 ? 'Se flere bilder fra anlegget' : 'Havstein Par 3'}</p>
+                    <p className="gallery-card__caption">
+                      {index === 0 ? 'Se flere bilder fra anlegget' : businessName}
+                    </p>
                   </div>
                 </article>
               ))}
@@ -536,7 +398,7 @@ export default function App() {
           <div className="container">
             <SectionHeading
               title="Våre partnere"
-              description="Vi samarbeider med lokale aktører for å skape et bedre tilbud på Havstein."
+              description={`Vi samarbeider med lokale aktører for å skape et bedre tilbud på ${businessName}.`}
             />
             <div className="partners-grid partners-grid--logos">
               {partners.map((partner) => (
@@ -550,8 +412,8 @@ export default function App() {
           <div className="container split-grid">
             <div>
               <SectionHeading
-                title="Kontakt og beliggenhet"
-                description="Kort vei ut fra byen, enkel adkomst og lav terskel for å ta turen innom."
+                title={siteContent.contact.title}
+                description={siteContent.contact.subtitle}
               />
               <div className="contact-list">
                 <div className="contact-item">
@@ -562,8 +424,8 @@ export default function App() {
                     </svg>
                   </span>
                   <div>
-                    <p className="contact-item__label">Område</p>
-                    <p className="contact-item__value">Havstein, Trondheim</p>
+                    <p className="contact-item__label">{siteContent.contact.area.label}</p>
+                    <p className="contact-item__value">{siteContent.contact.area.value}</p>
                   </div>
                 </div>
 
@@ -574,8 +436,8 @@ export default function App() {
                     </svg>
                   </span>
                   <div>
-                    <p className="contact-item__label">Telefon</p>
-                    <p className="contact-item__value">+47 72 82 40 00</p>
+                    <p className="contact-item__label">{siteContent.contact.phone.label}</p>
+                    <p className="contact-item__value">{siteContent.contact.phone.value}</p>
                   </div>
                 </div>
 
@@ -587,8 +449,8 @@ export default function App() {
                     </svg>
                   </span>
                   <div>
-                    <p className="contact-item__label">E-post</p>
-                    <p className="contact-item__value">post@havsteinpar3.no</p>
+                    <p className="contact-item__label">{siteContent.contact.email.label}</p>
+                    <p className="contact-item__value">{siteContent.contact.email.value}</p>
                   </div>
                 </div>
               </div>
@@ -596,11 +458,11 @@ export default function App() {
             <div className="map-card">
               <div className="map-placeholder">
                 <div className="map-placeholder__content">
-                  <p className="map-placeholder__eyebrow">Havstein, Trondheim</p>
-                  <p className="map-placeholder__title">Havstein, Trondheim</p>
-                  <p className="map-placeholder__text">Kort vei fra sentrum, med enkel adkomst for bil, buss og sykkel.</p>
-                  <a className="button button--primary map-placeholder__cta" href="#">
-                    Åpne i Google Maps
+                  <p className="map-placeholder__eyebrow">{siteContent.contact.mapCard.eyebrow}</p>
+                  <p className="map-placeholder__title">{siteContent.contact.mapCard.title}</p>
+                  <p className="map-placeholder__text">{siteContent.contact.mapCard.description}</p>
+                  <a className="button button--primary map-placeholder__cta" href={siteContent.contact.mapCard.ctaHref}>
+                    {siteContent.contact.mapCard.ctaLabel}
                   </a>
                 </div>
               </div>
@@ -614,7 +476,7 @@ export default function App() {
           <a className="footer__cta" href="#booking">
             Book starttid
           </a>
-          <p>© 2026 Trondheim Par3golf på Havstein</p>
+          <p>© 2026 {businessName}</p>
           <p>Par 3-bane og driving range i Trondheim.</p>
         </div>
       </footer>

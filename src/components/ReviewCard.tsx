@@ -2,9 +2,10 @@ interface ReviewCardProps {
   rating: number;
   text: string;
   name: string;
+  sourceLabel: string;
 }
 
-export function ReviewCard({ rating, text, name }: ReviewCardProps) {
+export function ReviewCard({ rating, text, name, sourceLabel }: ReviewCardProps) {
   const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
   return (
@@ -15,7 +16,7 @@ export function ReviewCard({ rating, text, name }: ReviewCardProps) {
       <p className="review-card__text">"{text}"</p>
       <div className="review-card__meta">
         <p className="review-card__name">{name}</p>
-        <p className="review-card__source">Google</p>
+        <p className="review-card__source">{sourceLabel}</p>
       </div>
     </article>
   );
