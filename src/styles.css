@@ -366,6 +366,24 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
     radial-gradient(circle at top right, rgba(217, 201, 174, 0.15), transparent 30%);
 }
 
+.news-section {
+  background:
+    linear-gradient(180deg, rgba(246, 244, 239, 0.96), rgba(241, 245, 241, 0.88)),
+    radial-gradient(circle at top left, rgba(228, 239, 228, 0.2), transparent 32%);
+}
+
+.about-course-section {
+  background:
+    linear-gradient(180deg, rgba(247, 245, 240, 0.96), rgba(239, 244, 240, 0.86)),
+    radial-gradient(circle at top right, rgba(228, 239, 228, 0.22), transparent 34%);
+}
+
+.facilities-overview-section {
+  background:
+    linear-gradient(180deg, rgba(244, 242, 237, 0.96), rgba(247, 245, 240, 0.92)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 26%);
+}
+
 .partners-section {
   background:
     linear-gradient(180deg, rgba(247, 245, 240, 0.96), rgba(242, 246, 242, 0.9)),
@@ -914,6 +932,256 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
   gap: 1.1rem;
 }
 
+.about-course-layout {
+  display: grid;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.about-course__panel {
+  gap: 1.25rem;
+}
+
+.about-course__body {
+  margin: 0;
+  color: rgba(31, 42, 37, 0.78);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.about-course__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.about-course__stat {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.58rem 0.88rem;
+  border-radius: 999px;
+  background: rgba(228, 239, 228, 0.6);
+  border: 1px solid rgba(68, 111, 84, 0.14);
+  color: rgba(31, 42, 37, 0.82);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.about-course__image {
+  min-height: 100%;
+}
+
+.facility-overview-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.facility-overview-card {
+  display: grid;
+  gap: 0.95rem;
+  align-content: start;
+  min-height: 100%;
+  padding: 1.2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(248, 246, 240, 0.92)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 24%);
+  border-color: rgba(68, 111, 84, 0.1);
+  box-shadow:
+    0 16px 32px rgba(31, 42, 37, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.facility-overview-card__accent {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.facility-overview-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(231, 240, 232, 0.9), rgba(255, 255, 255, 0.94));
+  border: 1px solid rgba(68, 111, 84, 0.12);
+  color: #446f54;
+  box-shadow:
+    0 10px 20px rgba(68, 111, 84, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.facility-overview-card__icon svg {
+  width: 1.18rem;
+  height: 1.18rem;
+}
+
+.facility-overview-card__eyebrow {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.68rem;
+  border-radius: 999px;
+  background: rgba(228, 239, 228, 0.62);
+  border: 1px solid rgba(68, 111, 84, 0.1);
+  color: rgba(68, 111, 84, 0.86);
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.facility-overview-card__body {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.facility-overview-card__title {
+  margin: 0;
+  font-size: 1.22rem;
+  line-height: 1.12;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.facility-overview-card__description {
+  margin: 0;
+  color: rgba(31, 42, 37, 0.62);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  min-height: 4.45rem;
+}
+
+.facility-overview-card__list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 1.05rem 0 0;
+  border-top: 1px solid rgba(31, 42, 37, 0.08);
+  list-style: none;
+}
+
+.facility-overview-card__list li {
+  position: relative;
+  padding-left: 1.05rem;
+  color: rgba(31, 42, 37, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.facility-overview-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.48rem;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: #668d6b;
+  box-shadow: 0 0 0 4px rgba(102, 141, 107, 0.1);
+}
+
+.news-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.news-card {
+  display: grid;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(248, 246, 240, 0.92)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 24%);
+  border: 1px solid rgba(31, 42, 37, 0.075);
+  box-shadow:
+    0 14px 34px rgba(31, 42, 37, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.news-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 210px;
+}
+
+.news-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 240ms ease;
+}
+
+.news-card__content {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.15rem 1.15rem 1.2rem;
+}
+
+.news-card__date,
+.news-card__title,
+.news-card__excerpt,
+.news-card__link {
+  margin: 0;
+}
+
+.news-card__date {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(228, 239, 228, 0.62);
+  border: 1px solid rgba(68, 111, 84, 0.1);
+  color: rgba(68, 111, 84, 0.86);
+  font-size: 0.71rem;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.news-card__title {
+  font-size: 1.26rem;
+  line-height: 1.18;
+  color: var(--text);
+}
+
+.news-card__excerpt {
+  color: rgba(31, 42, 37, 0.64);
+  line-height: 1.58;
+}
+
+.news-card__link {
+  margin-top: auto;
+  color: #446f54;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 36px rgba(31, 42, 37, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.news-card:hover .news-card__image {
+  transform: scale(1.03);
+}
+
 .step {
   display: grid;
   gap: 1rem;
@@ -1039,7 +1307,7 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
 }
 
 .reviews-section .section-heading {
-  max-width: 34rem;
+  max-width: 44rem;
 }
 
 .reviews-section__meta {
@@ -1386,6 +1654,22 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
 }
 
 @media (min-width: 680px) {
+  .about-course-layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  }
+
+  .about-course__stats {
+    justify-content: flex-start;
+  }
+
+  .facility-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .split-grid {
     grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
   }
@@ -1451,6 +1735,21 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
 @media (min-width: 992px) {
   .container {
     width: min(1200px, calc(100% - 3rem));
+  }
+
+  .about-course__stats {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 0.6rem;
+  }
+
+  .facility-overview-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .split-grid {
@@ -1535,12 +1834,15 @@ main > .section:nth-of-type(even):not(.section--accent):not(.reviews-section):no
   }
 
   .split-grid,
+  .about-course-layout,
   .gallery-grid,
   .partners-grid,
   .contact-grid,
   .pricing-grid,
   .info-grid,
   .facility-grid,
+  .facility-overview-grid,
+  .news-grid,
   .pricing-grid--four {
     grid-template-columns: 1fr;
   }

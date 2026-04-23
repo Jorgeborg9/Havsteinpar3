@@ -1,4 +1,4 @@
-# Trondheim Par3golf på Havstein
+# Namsos Golfklubb preview
 
 React + Vite demo homepage for a premium local par 3 golf course.
 

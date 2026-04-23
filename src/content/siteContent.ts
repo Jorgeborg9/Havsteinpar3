@@ -2,7 +2,7 @@
 // Template Setup
 // ============================================================================
 
-const businessName = "Havstein Par 3";
+const businessName = 'Namsos Golfklubb';
 
 // ============================================================================
 // Shared Types
@@ -66,6 +66,48 @@ interface ReviewsContent {
 }
 
 // ============================================================================
+// About Course
+// ============================================================================
+
+interface AboutCourseContent extends SectionHeaderContent {
+  stats: string[];
+  body: string;
+}
+
+// ============================================================================
+// News
+// ============================================================================
+
+interface NewsCardContent {
+  date: string;
+  title: string;
+  excerpt: string;
+  image: 'hero' | 'course' | 'hull' | 'junior' | 'vtg';
+  linkLabel: string;
+  linkHref: string;
+}
+
+interface NewsContent extends SectionHeaderContent {
+  cards: NewsCardContent[];
+}
+
+// ============================================================================
+// Facilities
+// ============================================================================
+
+interface FacilitiesGroupContent {
+  icon: 'practice' | 'clubhouse' | 'visitor';
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: string[];
+}
+
+interface FacilitiesContent extends SectionHeaderContent {
+  groups: FacilitiesGroupContent[];
+}
+
+// ============================================================================
 // Play Or Train
 // ============================================================================
 
@@ -97,6 +139,28 @@ interface PlayOrTrainContent {
   sectionLabel: string;
   title: string;
   cards: PlayOrTrainCard[];
+}
+
+// ============================================================================
+// Visit Section
+// ============================================================================
+
+interface VisitStepContent {
+  title: string;
+  text: string;
+}
+
+interface VisitNoteContent {
+  title: string;
+  text: string;
+}
+
+interface VisitSectionContent {
+  title: string;
+  subtitle: string;
+  steps: VisitStepContent[];
+  cta: LinkContent;
+  notes: VisitNoteContent[];
 }
 
 // ============================================================================
@@ -138,8 +202,8 @@ interface ContactContent extends SectionHeaderContent {
     eyebrow: string;
     title: string;
     description: string;
-    ctaLabel: LinkContent["label"];
-    ctaHref: LinkContent["href"];
+    ctaLabel: LinkContent['label'];
+    ctaHref: LinkContent['href'];
   };
 }
 
@@ -151,7 +215,11 @@ interface SiteContent {
   businessName: string;
   hero: HeroContent;
   reviews: ReviewsContent;
+  aboutCourse: AboutCourseContent;
+  news: NewsContent;
+  facilities: FacilitiesContent;
   playOrTrain: PlayOrTrainContent;
+  visitSection: VisitSectionContent;
   pricing: PricingContent;
   contact: ContactContent;
 }
@@ -161,251 +229,354 @@ interface SiteContent {
 // ============================================================================
 
 export const siteContent: SiteContent = {
-  // Global business identity
   businessName,
 
-  // Hero section
   hero: {
-    eyebrow: "PAR 3-BANE OG DRIVING RANGE",
-    title: "Golf rett utenfor Trondheim",
-    subtitle: "Spill en rask runde eller ta en treningsøkt på rangen.",
+    eyebrow: '9-HULLS GOLFBANE PÅ SÆVIK',
+    title: 'Golf nær naturen i Namsos',
+    subtitle: 'En vakker 9-hulls park- og skogsbane kun 5 kilometer sør for Namsos.',
     statusCards: [
       {
-        title: "Golfbanen",
-        status: "open",
-        statusLabel: "Åpen for spill",
-        detail: "Hver dag 09:00–20:00",
+        title: 'Golfbanen',
+        status: 'open',
+        statusLabel: 'Åpen for spill',
+        detail: 'Starttidsbestilling er åpnet',
       },
       {
-        title: "Driving range",
-        status: "open",
-        statusLabel: "Åpen for drop-in",
-        detail: "Hver dag 07:00–22:00",
+        title: 'Driving range',
+        status: 'open',
+        statusLabel: 'Åpen',
+        detail: 'Treningsområde og range tilgjengelig',
       },
     ],
     primaryCta: {
-      label: "Book starttid",
-      href: "#",
+      label: 'Book starttid',
+      href: '#',
     },
     secondaryCta: {
-      label: "Se praktisk info",
-      href: "#",
+      label: 'Se praktisk info',
+      href: '#practical',
     },
   },
 
-  // Reviews section
   reviews: {
-    title: `Hva folk sier om ${businessName}`,
-    subtitle: "Et utvalg Google-anmeldelser fra spillere og besøkende.",
-    summaryLabel: "Google reviews",
-    summaryScore: "4,1/5",
-    linkLabel: "Se alle Google-anmeldelser",
-    linkHref: "#",
+    title: 'Hva folk sier om Namsos Golfklubb',
+    subtitle: 'Et utvalg Google-anmeldelser fra spillere og besøkende.',
+    summaryLabel: 'Google reviews',
+    summaryScore: '4,0/5',
+    linkLabel: 'Se Google-anmeldelser',
+    linkHref: '#',
     cards: [
       {
-        name: "Øystein Aas",
+        name: 'Georg Romstad',
         rating: 5,
-        quote: "Relativt billig, sentrumsnært og med en fantastisk utsikt!",
-        sourceLabel: "Google",
+        quote: 'Fin og trivelig bane i flotte omgivelser.',
+        sourceLabel: 'Google',
       },
       {
-        name: "Peter Jiro Grieg Toyomasu",
+        name: 'Isak Brattgjerd',
         rating: 5,
-        quote: "God range og bane for prisen! Tilgjengelig og enkelt.",
-        sourceLabel: "Google",
+        quote: 'Veldig fin bane og flott område.',
+        sourceLabel: 'Google',
       },
       {
-        name: "Mads Iversen",
+        name: 'Torunn Mauseth',
         rating: 5,
-        quote: "Fantastisk personale, fin green og topp stemning.",
-        sourceLabel: "Google",
+        quote: 'Trivelig klubb og fine omgivelser.',
+        sourceLabel: 'Google',
       },
       {
-        name: "Rigmor Bøkseth Monge",
-        rating: 5,
-        quote: "Kjempefint der nå, ut å spill golf folkens.",
-        sourceLabel: "Google",
-      },
-      {
-        name: "Wenche Sivertsen",
-        rating: 5,
-        quote:
-          "Fin plass for golf med flott utsikt over Trondheim. 9 hulls bane som tar ca 1 time.",
-        sourceLabel: "Google",
-      },
-      {
-        name: "Reidar Angell Hansen",
-        rating: 4,
-        quote: "Fin utsikt herfra på nyttårsaften, ellers en vakker plass.",
-        sourceLabel: "Google",
+        name: 'Gunnar Willy Jensen',
+        rating: 3,
+        quote: 'Ok bane med potensial og fine omgivelser.',
+        sourceLabel: 'Google',
       },
     ],
   },
 
-  // Practical play / training section
+  aboutCourse: {
+    sectionLabel: businessName,
+    title: 'Om banen',
+    subtitle: 'En 9-hulls bane med variert spill og naturskjønne omgivelser på Sævik.',
+    stats: [
+      '9 hull',
+      'Par 66',
+      'Park- og skogsbane',
+      '3 utslagssteder',
+      'Ca. 5 km sør for Namsos',
+    ],
+    body:
+      'Banen ligger vakkert til på Sævik mellom Namsos og Bangsund langs RV17. Hullene er relativt smale og gir en variert spilleopplevelse, med en kombinasjon av par 3, par 4 og par 5. Greenene varierer i størrelse og utfordring, og flere hull har vann i spill.',
+  },
+
+  news: {
+    sectionLabel: businessName,
+    title: 'Siste nytt',
+    subtitle:
+      'Små oppdateringer fra klubben om banen, aktivitetstilbud og praktisk informasjon gjennom sesongen.',
+    cards: [
+      {
+        date: 'April 2026',
+        title: 'Banen er åpen for spill',
+        excerpt:
+          'Sesongen er i gang, og starttidsbestilling er nå åpnet i Golfbox / Gimmie. Husk å reparere nedslagsmerker og legge tilbake oppslått torv.',
+        image: 'hero',
+        linkLabel: 'Les oppdatering',
+        linkHref: '#',
+      },
+      {
+        date: 'April 2026',
+        title: 'Juniorgolf starter opp',
+        excerpt:
+          'Klubben starter opp et gratis juniorgolf-tilbud for ungdommer som vil prøve golf eller utvikle ferdighetene sine videre.',
+        image: 'junior',
+        linkLabel: 'Les mer',
+        linkHref: '#',
+      },
+      {
+        date: 'Vår 2026',
+        title: 'VTG og kurs i sesong',
+        excerpt:
+          'Namsos Golfklubb tilbyr VTG / golfkurs i sesong for nye spillere som ønsker å komme i gang med golf på en enkel måte.',
+        image: 'vtg',
+        linkLabel: 'Se informasjon',
+        linkHref: '#',
+      },
+    ],
+  },
+
+  facilities: {
+    sectionLabel: businessName,
+    title: 'Fasiliteter på anlegget',
+    subtitle: 'Et velholdt anlegg med det viktigste du trenger for en god runde eller treningsøkt.',
+    groups: [
+      {
+        icon: 'practice',
+        eyebrow: 'For trening',
+        title: 'Treningsfasiliteter',
+        description:
+          'Gode områder for oppvarming og trening – enten du vil finpusse teknikken eller komme i gang før runden.',
+        items: [
+          'Driving range',
+          'Putting green',
+          'Chipping area',
+          'Treningsområde',
+        ],
+      },
+      {
+        icon: 'clubhouse',
+        eyebrow: 'Klubbhus',
+        title: 'Klubbhus og tilbud',
+        description:
+          'Enkle fasiliteter på anlegget som gjør besøket mer behagelig, både før og etter runden.',
+        items: [
+          'Klubbhus',
+          'Golfbil',
+          'Enkle serveringstilbud på anlegget',
+        ],
+      },
+      {
+        icon: 'visitor',
+        eyebrow: 'Nyttig å vite',
+        title: 'Praktisk info',
+        description:
+          'Praktisk informasjon for deg som skal besøke banen, med enkel adkomst og gode parkeringsmuligheter.',
+        items: [
+          'Overnatting innenfor 5 km',
+          'Kort vei fra Namsos sentrum',
+          'Kort vei mellom bane og treningsområder',
+        ],
+      },
+    ],
+  },
+
   playOrTrain: {
     sectionLabel: businessName,
-    title: `Spill eller tren – enkelt på ${businessName}`,
+    title: 'Spill golf i Namsos',
     cards: [
       {
-        eyebrow: "For deg som vil spille",
-        title: "Golfbanen",
-        status: "open",
-        statusLabel: "Åpen",
-        hours: "Hver dag 09:00–20:00",
+        eyebrow: 'For deg som vil spille',
+        title: 'Golfbanen',
+        status: 'open',
+        statusLabel: 'Åpen',
+        hours: 'Bestill starttid i Golfbox / Gimmie',
         greenkeeperComment: {
-          title: "Kommentar fra greenkeeper",
-          text: "Ingen kommentar foreløpig.",
+          title: 'Siste info',
+          text: 'Banen er åpen for spill. Reparer nedslagsmerker og legg tilbake oppslått torv.',
         },
         groups: [
           {
-            title: "Booking og spill",
+            title: 'Praktisk info',
             points: [
-              "Booking anbefales ved bra vær",
-              "Drop-in mulig ved ledig kapasitet",
-              "Kø for drop-in ved utslag 1 (venstre side)",
-              "Maks 4 spillere per starttid",
-              "Møt opp 10 min før start",
+              'Starttid må bestilles før spill',
+              'Banen spilles over 9 hull',
+              'Banen har 3 utslagssteder',
             ],
           },
           {
-            title: "Baneregler",
+            title: 'Baneregler',
             points: [
-              "9 hull par 3-bane",
-              "Bruk greengaffel og reparer merker",
-              "Legg tilbake torv",
-              "Spill hensynsfullt ved våt bane",
-              "Hold tempo (løft ball etter 5 slag)",
+              'Legg tilbake oppslått torv',
+              'Reparer nedslagsmerker på greenene',
+              'Vis hensyn ved arbeid på banen',
             ],
           },
           {
-            title: "Under 18 år",
-            intro:
-              "Vi har utfordringer med unge spillere som ikke følger regler. Derfor må alle under 18 registreres før spill.",
+            title: 'Merk',
             points: [
-              "Runde må bestilles via nettside eller drop-in",
-              "Før start: send SMS til 91172405",
-              "Oppgi navn og starttid (maks 4 spillere)",
-              "Oppgi hvordan det er betalt",
-            ],
-            example: "Eksempel: 12:30 Per, Hans, Nils – vipps fra Per 160 kr",
-          },
-          {
-            title: "Turister",
-            points: [
-              "Ring +47 91172405 før spill",
-              "Mulighet for å leie utstyr",
+              'Det kan forekomme arbeid på greener og vanningsanlegg utover våren',
+              'Noen greener kan være midlertidig stengt',
+              'Klubbhuset er ikke alltid åpent',
             ],
           },
         ],
         cta: {
-          label: "Book starttid",
-          href: "#booking",
+          label: 'Book starttid',
+          href: '#',
         },
-        variant: "course",
+        variant: 'course',
       },
       {
-        eyebrow: "For deg som vil trene",
-        title: "Driving range",
-        status: "open",
-        statusLabel: "Åpen",
-        hours: "Hver dag 07:00–22:00",
+        eyebrow: 'For deg som vil trene',
+        title: 'Driving range',
+        status: 'open',
+        statusLabel: 'Åpen',
+        hours: 'Range og øvingsområde tilgjengelig',
         greenkeeperComment: {
-          title: "Kommentar fra greenkeeper",
-          text: "Noe begrenset bruk da baller samles med traktor. Ikke slå når traktor kjører.",
-          warning: "Knust glass = kr 15.000,-!",
+          title: 'Trening',
+          text: 'Driving range, putting green og øvrige treningsområder gjør det enkelt å øve på alle deler av spillet.',
         },
         groups: [
           {
-            title: "Bruk",
+            title: 'Fasiliteter',
             points: [
-              "30 baller = 28 kr (liten bøtte)",
-              "Stor bøtte = 2 × 30 baller",
+              'Driving range',
+              'Putting green',
+              'Chipping area',
+              'Øvingsområde',
             ],
           },
           {
-            title: "Regler",
+            title: 'For nye spillere',
             points: [
-              "Driver er forbudt for herrespillere",
-              "Tillatt: jern, hybrider og fairway-wooder",
-              "Ingen lengdebegrensning på slag med wooder og jern",
+              'Klubben arrangerer juniorgolf',
+              'VTG / golfkurs tilbys i sesong',
             ],
-            note:
-              "Unntak: gjelder ikke damespillere, barn (< ca. 13 år) og eldre herrespillere med slaglengde ca. 170–180 m",
           },
         ],
         cta: {
-          label: "Se range-priser",
-          href: "#pricing",
+          label: 'Se kontaktinfo',
+          href: '#contact',
         },
-        variant: "range",
+        variant: 'range',
       },
     ],
   },
 
-  // Pricing section
+  visitSection: {
+    title: 'Enkel vei til en runde',
+    subtitle: 'Det skal være enkelt å bruke anlegget, enten du kommer for en runde eller bare en kort treningsøkt.',
+    steps: [
+      {
+        title: 'Skal du spille banen?',
+        text: 'Book starttid på forhånd i Golfbox eller Gimmie hvis du vil være sikker på plass. Drop-in går fint når det er ledig.',
+      },
+      {
+        title: 'Vil du bare trene?',
+        text: 'Driving range og treningsområder kan brukes uten booking.',
+      },
+      {
+        title: 'Har du spørsmål?',
+        text: 'Ta kontakt med klubben for hjelp med medlemskap, kurs eller praktisk info før besøket.',
+      },
+    ],
+    cta: {
+      label: 'Kontakt klubben',
+      href: '#contact',
+    },
+    notes: [
+      {
+        title: 'Før du besøker banen',
+        text: 'Banestatus og tilgang til klubbhuset kan variere gjennom sesongen. Det er lurt å sjekke siste praktiske info før du reiser.',
+      },
+      {
+        title: 'Beliggenhet',
+        text: 'Anlegget ligger på Sævik, mellom Namsos og Bangsund, med enkel adkomst fra RV17 og kort vei fra sentrum.',
+      },
+      {
+        title: 'For kurs og grupper',
+        text: 'Klubben tilbyr juniorgolf og VTG-kurs i sesong. Ta gjerne kontakt hvis du vil vite mer eller melde deg på.',
+      },
+    ],
+  },
+
   pricing: {
     sectionLabel: businessName,
-    title: "Priser for spill og trening",
-    subtitle: "Enkle priser for banen og rangen, med betaling samlet på ett sted.",
+    title: 'Priser og medlemskap',
+    subtitle: 'Enkle oversikter over greenfee, range og utvalgte medlemspriser.',
     course: {
-      title: "Golfbanen",
+      title: 'Greenfee',
       items: [
         {
-          label: "Voksen",
-          sublabel: "Runde 2: 50 kr",
-          price: "100 kr",
+          label: 'Voksen',
+          sublabel: 'Greenfee',
+          price: '300 kr',
         },
         {
-          label: "Ungdom / student",
-          sublabel: "Runde 2: 40 kr",
-          price: "80 kr",
+          label: 'Junior',
+          sublabel: '13–19 år',
+          price: '100 kr',
         },
         {
-          label: "Barn (t.o.m. 12 år)",
-          sublabel: "Runde 2: 30 kr",
-          price: "60 kr",
+          label: 'Barn',
+          sublabel: 't.o.m. 12 år',
+          price: '50 kr',
+        },
+        {
+          label: 'Golfbil',
+          sublabel: 'Leie per runde',
+          price: '200 kr',
         },
       ],
-      note: "Ungdom t.o.m. 20 år • Student t.o.m. 28 år",
-      paymentTitle: "Betaling",
+      note: '',
+      paymentTitle: 'Kontakt',
       paymentLines: [
-        "Vipps: 89485",
-        "Får du ikke brukt Vipps? Ring +47 91172405",
+        'Andre medlemskap og satser kan opplyses ved kontakt.',
+        'Telefon: +47 97 15 21 02',
+        'E-post: arild.opdal@moller.no',
       ],
-      fineNote: "Manglende betaling kan føre til gebyr på kr 100 eller bortvisning.",
+      fineNote: 'Ta kontakt for full oversikt over medlemskap, kurs og øvrige satser.',
     },
     range: {
-      title: "Driving range",
-      price: "28 kr",
-      label: "Liten bøtte (30 baller)",
-      note: "Drop-in, ingen booking",
+      title: 'Driving range',
+      price: '30 kr',
+      label: 'Liten bøtte (30 baller)',
+      note: 'Drop-in – ingen booking nødvendig',
     },
   },
 
-  // Contact section
   contact: {
     sectionLabel: businessName,
-    title: "Kontakt og beliggenhet",
-    subtitle: "Kort vei ut fra byen, enkel adkomst og lav terskel for å ta turen innom.",
+    title: 'Kontakt og beliggenhet',
+    subtitle: 'Banen ligger på Sævik, kun noen minutter sør for Namsos.',
     area: {
-      label: "Område",
-      value: `${businessName}, Trondheim`,
+      label: 'Adresse',
+      value: 'Klingavegen 611, 7820 Spillum',
     },
     phone: {
-      label: "Telefon",
-      value: "+47 72 82 40 00",
+      label: 'Telefon',
+      value: '+47 97 15 21 02',
     },
     email: {
-      label: "E-post",
-      value: "post@havsteinpar3.no",
+      label: 'E-post',
+      value: 'arild.opdal@moller.no',
     },
     mapCard: {
-      eyebrow: `${businessName}, Trondheim`,
-      title: `${businessName}, Trondheim`,
-      description: "Kort vei fra sentrum, med enkel adkomst for bil, buss og sykkel.",
-      ctaLabel: "Åpne i Google Maps",
-      ctaHref: "#",
+      eyebrow: 'Namsos Golfklubb',
+      title: 'Finn veien til banen',
+      description: 'Beliggende mellom Namsos og Bangsund, med enkel adkomst og naturskjønne omgivelser.',
+      ctaLabel: 'Åpne i kart',
+      ctaHref: 'https://maps.google.com/?q=Klingavegen+611,+7820+Spillum',
     },
   },
 };

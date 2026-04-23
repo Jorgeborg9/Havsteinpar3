@@ -1,79 +1,90 @@
 import { useEffect, useRef, useState } from 'react';
 import { SectionHeading } from './components/SectionHeading';
-import { PartnerLogoCard } from './components/PartnerLogoCard';
 import { ReviewCard } from './components/ReviewCard';
 import { siteContent } from './content/siteContent';
-import heroImage from './assets/images/par3hero.jpg';
-import par3Logo from './assets/images/Par3logo.png';
-import admentoLogo from './assets/images/admento logo web.jpg';
-import cafeDublinLogo from './assets/images/CafeDublin-skilt(121x76)web.jpg';
-import kLundLogo from './assets/images/k_lund1.jpg';
-import vaernessLogo from './assets/images/vaerness4.jpg';
-import courseImageOne from './assets/images/sigridbane2.jpg';
-import courseImageTwo from './assets/images/trondheimpar3golf2016b.jpg';
-import courseImageThree from './assets/images/Trondheim par3golf range.jpg';
-import courseImageFour from './assets/images/trondheimpar3golf2016c.jpg';
-import courseImageFive from './assets/images/trondheim par3golf hull 8b.jpg';
-
-const steps = [
-  {
-    label: 'Skal du spille banen?',
-    detail: 'Book starttid på forhånd hvis du vil være sikker på plass. Drop-in går fint når det er ledig.',
-  },
-  {
-    label: 'Skal du bare trene?',
-    detail: 'Driving rangen brukes uten booking. Kjøp baller i automaten og gå rett ut på utslagsmattene.',
-  },
-  {
-    label: 'Trenger du utstyr?',
-    detail: 'Vi har enkel kølleutleie og det viktigste du trenger for en spontan tur innom.',
-  },
-];
+import heroImage from './assets/images/hero.png';
+import clubLogo from './assets/images/logo.jpg';
+import courseImageOne from './assets/images/course-1.jpg';
+import courseImageTwo from './assets/images/hull-2.png';
+import juniorCourseImage from './assets/images/juniorkurs.png';
+import mapBackgroundImage from './assets/images/Map.png';
+import courseImageThree from './assets/images/course-1.jpg';
+import courseImageFour from './assets/images/hero.png';
+import courseImageFive from './assets/images/hull-2.png';
+import vtgCourseImage from './assets/images/vtg-kurs.png';
 
 const gallery = [
   {
     src: courseImageOne,
-    alt: `Nærspillområde på ${siteContent.businessName} med green og flagg`,
+    alt: `Banemiljø ved ${siteContent.businessName}`,
   },
   {
     src: courseImageTwo,
-    alt: `Oversiktsbilde fra par 3-banen på ${siteContent.businessName}`,
+    alt: `Oversiktsbilde fra ${siteContent.businessName}`,
   },
   {
     src: courseImageThree,
-    alt: `Driving rangen på ${siteContent.businessName}`,
+    alt: `Treningsområde ved ${siteContent.businessName}`,
   },
   {
     src: courseImageFour,
-    alt: `Banemiljø på ${siteContent.businessName} i sommersesong`,
+    alt: `Natur og golfmiljø ved ${siteContent.businessName}`,
   },
   {
     src: courseImageFive,
-    alt: `Hullområde på ${siteContent.businessName}`,
+    alt: `Spillområde på ${siteContent.businessName}`,
   },
 ];
 
-const arrivalNotes = [
-  {
-    title: 'Før du kommer',
-    text: 'Banestatus oppdateres fortløpende ved regn og tidlig vår. Sjekk åpningstider før du drar hvis været er ustabilt.',
-  },
-  {
-    title: 'Parkering og ankomst',
-    text: 'Parkering finnes ved anlegget. Kommer du med buss eller sykkel er det kort vei siste stykket inn.',
-  },
-  {
-    title: 'For grupper',
-    text: 'Bedrifter, vennegjenger og mindre arrangementer kan ta kontakt for samlet booking av bane og trening.',
-  },
-];
+const newsImages = {
+  hero: heroImage,
+  course: courseImageOne,
+  hull: courseImageTwo,
+  junior: juniorCourseImage,
+  vtg: vtgCourseImage,
+} as const;
 
-const partners = [
-  { name: 'Admento', logo: admentoLogo },
-  { name: 'Cafe Dublin', logo: cafeDublinLogo },
-  { name: 'K Lund', logo: kLundLogo },
-  { name: 'Værness', logo: vaernessLogo },
-];
+function FacilitiesIcon({ icon }: { icon: 'practice' | 'clubhouse' | 'visitor' }) {
+  if (icon === 'practice') {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M5 18.5h14M7.2 18.5l3.2-9.8c.25-.76 1.33-.76 1.58 0l3.22 9.8"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="12" cy="5.5" r="1.75" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (icon === 'clubhouse') {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M4.5 10.5 12 5l7.5 5.5V19a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-8.5Z"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinejoin="round"
+        />
+        <path d="M10 20v-5h4v5" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 20.5s5.5-4.95 5.5-10.08a5.5 5.5 0 1 0-11 0C6.5 15.55 12 20.5 12 20.5Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+      <circle cx="12" cy="10.5" r="1.9" stroke="currentColor" strokeWidth="1.7" />
+    </svg>
+  );
+}
 
 export default function App() {
   const reviewsStripRef = useRef<HTMLDivElement | null>(null);
@@ -127,20 +138,17 @@ export default function App() {
   return (
     <div className="page-shell">
       <header className="hero">
-        <div
-          className="hero__media"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
+        <div className="hero__media" style={{ backgroundImage: `url(${heroImage})` }} />
         <div className="container hero__inner">
           <div className="hero-bar" aria-label="Toppnavigasjon">
             <a className="hero-bar__brand" href="/">
-              <img src={par3Logo} alt={businessName} />
+              <img src={clubLogo} alt={businessName} />
             </a>
-            <a className="hero-bar__link" href="#">
-              <span className="sr-only">Facebook</span>
+            <a className="hero-bar__link" href="#contact">
+              <span className="sr-only">Kontakt</span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
-                  d="M13.5 21v-7.5h2.55l.45-3h-3V8.58c0-.84.27-1.41 1.47-1.41H16.5V4.53c-.27-.03-1.2-.12-2.28-.12-2.28 0-3.84 1.38-3.84 4.02v2.07H7.8v3h2.58V21h3.12Z"
+                  d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 1.03v.24l5.62 4.28a.6.6 0 0 0 .76 0L18 7.77v-.24a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5Zm12 1.5-4.4 3.34a2.6 2.6 0 0 1-3.2 0L6 9.03v8.47c0 .28.22.5.5.5h11a.5.5 0 0 0 .5-.5V9.03Z"
                   fill="currentColor"
                 />
               </svg>
@@ -162,33 +170,22 @@ export default function App() {
             </div>
 
             <div className="hero__facility-grid">
-              <article className="hero-teaser hero-teaser--course">
-                <p className="hero-teaser__label">{siteContent.hero.statusCards[0].title}</p>
-                <div className="hero-teaser__status-row">
-                  <span
-                    className="facility-card__status-dot facility-card__status-dot--open"
-                    aria-hidden="true"
-                  />
-                  <p className="hero-teaser__status">
-                    {siteContent.hero.statusCards[0].statusLabel}
-                  </p>
-                </div>
-                <p className="hero-teaser__detail">{siteContent.hero.statusCards[0].detail}</p>
-              </article>
-
-              <article className="hero-teaser hero-teaser--range">
-                <p className="hero-teaser__label">{siteContent.hero.statusCards[1].title}</p>
-                <div className="hero-teaser__status-row">
-                  <span
-                    className="facility-card__status-dot facility-card__status-dot--open"
-                    aria-hidden="true"
-                  />
-                  <p className="hero-teaser__status">
-                    {siteContent.hero.statusCards[1].statusLabel}
-                  </p>
-                </div>
-                <p className="hero-teaser__detail">{siteContent.hero.statusCards[1].detail}</p>
-              </article>
+              {siteContent.hero.statusCards.map((card, index) => (
+                <article
+                  key={card.title}
+                  className={`hero-teaser ${index === 0 ? 'hero-teaser--course' : 'hero-teaser--range'}`}
+                >
+                  <p className="hero-teaser__label">{card.title}</p>
+                  <div className="hero-teaser__status-row">
+                    <span
+                      className={`facility-card__status-dot facility-card__status-dot--${card.status}`}
+                      aria-hidden="true"
+                    />
+                    <p className="hero-teaser__status">{card.statusLabel}</p>
+                  </div>
+                  <p className="hero-teaser__detail">{card.detail}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
@@ -227,6 +224,90 @@ export default function App() {
           </div>
         </section>
 
+        <section className="section about-course-section" id="about-course">
+          <div className="container about-course-layout">
+            <div className="content-card about-course__panel">
+              <div className="section-heading">
+                <p className="section-label">{siteContent.aboutCourse.sectionLabel}</p>
+                <h2>{siteContent.aboutCourse.title}</h2>
+                <p className="section-description">{siteContent.aboutCourse.subtitle}</p>
+              </div>
+              <p className="about-course__body">{siteContent.aboutCourse.body}</p>
+              <div className="about-course__stats" aria-label="Nøkkeltall om banen">
+                {siteContent.aboutCourse.stats.map((stat) => (
+                  <span key={stat} className="about-course__stat">
+                    {stat}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <article className="image-block image-block--tall about-course__image">
+              <img src={courseImageOne} alt={`Utsnitt fra banen ved ${businessName}`} />
+            </article>
+          </div>
+        </section>
+
+        <section className="section news-section" id="news">
+          <div className="container">
+            <SectionHeading
+              title={siteContent.news.title}
+              description={siteContent.news.subtitle}
+            />
+            <div className="news-grid">
+              {siteContent.news.cards.map((item) => (
+                <article key={item.title} className="news-card">
+                  <div className="news-card__image-wrap">
+                    <img
+                      className="news-card__image"
+                      src={newsImages[item.image]}
+                      alt={item.title}
+                    />
+                  </div>
+                  <div className="news-card__content">
+                    <p className="news-card__date">{item.date}</p>
+                    <h3 className="news-card__title">{item.title}</h3>
+                    <p className="news-card__excerpt">{item.excerpt}</p>
+                    <a className="news-card__link" href={item.linkHref}>
+                      {item.linkLabel}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section facilities-overview-section" id="facilities">
+          <div className="container">
+            <SectionHeading
+              title={siteContent.facilities.title}
+              description={siteContent.facilities.subtitle}
+            />
+            <div className="facility-overview-grid">
+              {siteContent.facilities.groups.map((group) => (
+                <article key={group.title} className="content-card facility-overview-card">
+                  <div className="facility-overview-card__accent">
+                    <span className="facility-overview-card__icon">
+                      <FacilitiesIcon icon={group.icon} />
+                    </span>
+                    <p className="facility-overview-card__eyebrow">{group.eyebrow}</p>
+                  </div>
+                  <div className="facility-overview-card__body">
+                    <p className="facility-overview-card__title">{group.title}</p>
+                    <p className="facility-overview-card__description">{group.description}</p>
+                  </div>
+                  <ul className="facility-overview-card__list">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="practical" className="section">
           <div className="container">
             <div className="section-heading practical-section__heading">
@@ -252,30 +333,39 @@ export default function App() {
                     <p className="facility-card__hours">{facility.hours}</p>
                   </div>
 
-                  {facility.greenkeeperComment ? (
-                    <div className="facility-card__comment">
-                      <p className="facility-card__section-title">{facility.greenkeeperComment.title}</p>
-                      <p>{facility.greenkeeperComment.text}</p>
-                      {facility.greenkeeperComment.warning ? (
-                        <p className="facility-card__comment-warning">
-                          {facility.greenkeeperComment.warning}
-                        </p>
-                      ) : null}
-                    </div>
-                  ) : null}
+                  <div className="facility-card__comment">
+                    <p className="facility-card__section-title">
+                      {facility.greenkeeperComment.title}
+                    </p>
+                    <p>{facility.greenkeeperComment.text}</p>
+                    {facility.greenkeeperComment.warning ? (
+                      <p className="facility-card__comment-warning">
+                        {facility.greenkeeperComment.warning}
+                      </p>
+                    ) : null}
+                  </div>
 
                   <div className="facility-card__detail-groups">
                     {facility.groups.map((group) => (
-                      <section key={group.title} className="facility-card__notes facility-card__notes--compact">
+                      <section
+                        key={group.title}
+                        className="facility-card__notes facility-card__notes--compact"
+                      >
                         <p className="facility-card__section-title">{group.title}</p>
-                        {group.intro ? <p className="facility-card__section-intro">{group.intro}</p> : null}
+                        {group.intro ? (
+                          <p className="facility-card__section-intro">{group.intro}</p>
+                        ) : null}
                         <ul>
                           {group.points.map((point) => (
                             <li key={point}>{point}</li>
                           ))}
                         </ul>
-                        {group.note ? <p className="facility-card__section-note">{group.note}</p> : null}
-                        {group.example ? <p className="facility-card__section-example">{group.example}</p> : null}
+                        {group.note ? (
+                          <p className="facility-card__section-note">{group.note}</p>
+                        ) : null}
+                        {group.example ? (
+                          <p className="facility-card__section-example">{group.example}</p>
+                        ) : null}
                       </section>
                     ))}
                   </div>
@@ -318,9 +408,7 @@ export default function App() {
                   {siteContent.pricing.course.paymentLines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
-                  <p className="pricing-panel__fine-note">
-                    {siteContent.pricing.course.fineNote}
-                  </p>
+                  <p className="pricing-panel__fine-note">{siteContent.pricing.course.fineNote}</p>
                 </div>
               </article>
 
@@ -339,14 +427,16 @@ export default function App() {
         <section className="section section--compact gallery-section">
           <div className="container">
             <SectionHeading
-              title="Fra anlegget"
-              description={`Noen glimt fra banen, rangen og miljøet på ${businessName}.`}
+              title="Fra banen"
+              description={`Noen glimt fra anlegget og golfmiljøet på ${businessName}.`}
             />
             <div className="gallery-strip" aria-label={`Bildegalleri fra ${businessName}`}>
               {gallery.map((item, index) => (
                 <article
                   key={item.alt}
-                  className={`gallery-card gallery-card--local${index === 0 ? ' gallery-card--featured' : ''}`}
+                  className={`gallery-card gallery-card--local${
+                    index === 0 ? ' gallery-card--featured' : ''
+                  }`}
                 >
                   <img src={item.src} alt={item.alt} />
                   <div className="gallery-card__overlay">
@@ -364,45 +454,31 @@ export default function App() {
           <div className="container split-grid reverse-on-mobile">
             <div className="content-card">
               <SectionHeading
-                title="Slik fungerer det"
-                description="Det skal være enkelt å bruke anlegget, enten du kommer for en runde eller bare en kort treningsøkt."
+                title={siteContent.visitSection.title}
+                description={siteContent.visitSection.subtitle}
               />
               <div className="steps-list">
-                {steps.map((step, index) => (
-                  <div key={step.label} className="step">
+                {siteContent.visitSection.steps.map((step, index) => (
+                  <div key={step.title} className="step">
                     <span className="step__number">{index + 1}</span>
                     <div>
-                      <p className="step__title">{step.label}</p>
-                      <p className="step__detail">{step.detail}</p>
+                      <p className="step__title">{step.title}</p>
+                      <p className="step__detail">{step.text}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <a className="button button--primary" href="#contact">
-                Spør oss gjerne
+              <a className="button button--primary" href={siteContent.visitSection.cta.href}>
+                {siteContent.visitSection.cta.label}
               </a>
             </div>
 
             <div className="notes-stack">
-              {arrivalNotes.map((note) => (
+              {siteContent.visitSection.notes.map((note) => (
                 <article key={note.title} className="content-card note-card">
                   <p className="note-card__title">{note.title}</p>
                   <p>{note.text}</p>
                 </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section partners-section">
-          <div className="container">
-            <SectionHeading
-              title="Våre partnere"
-              description={`Vi samarbeider med lokale aktører for å skape et bedre tilbud på ${businessName}.`}
-            />
-            <div className="partners-grid partners-grid--logos">
-              {partners.map((partner) => (
-                <PartnerLogoCard key={partner.name} name={partner.name} logo={partner.logo} />
               ))}
             </div>
           </div>
@@ -419,7 +495,11 @@ export default function App() {
                 <div className="contact-item">
                   <span className="contact-item__icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z" stroke="currentColor" strokeWidth="1.7" />
+                      <path
+                        d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                      />
                       <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.7" />
                     </svg>
                   </span>
@@ -432,7 +512,12 @@ export default function App() {
                 <div className="contact-item">
                   <span className="contact-item__icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M6.8 4.5h2.7l1.1 3.5-1.6 1.7a13 13 0 0 0 5.2 5.2l1.7-1.6 3.5 1.1v2.7a1.8 1.8 0 0 1-2 1.8A15.6 15.6 0 0 1 5 6.5a1.8 1.8 0 0 1 1.8-2Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                      <path
+                        d="M6.8 4.5h2.7l1.1 3.5-1.6 1.7a13 13 0 0 0 5.2 5.2l1.7-1.6 3.5 1.1v2.7a1.8 1.8 0 0 1-2 1.8A15.6 15.6 0 0 1 5 6.5a1.8 1.8 0 0 1 1.8-2Z"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </span>
                   <div>
@@ -444,8 +529,21 @@ export default function App() {
                 <div className="contact-item">
                   <span className="contact-item__icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none">
-                      <rect x="3.5" y="6" width="17" height="12" rx="2.2" stroke="currentColor" strokeWidth="1.7" />
-                      <path d="m5.5 8 6.5 5 6.5-5" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                      <rect
+                        x="3.5"
+                        y="6"
+                        width="17"
+                        height="12"
+                        rx="2.2"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                      />
+                      <path
+                        d="m5.5 8 6.5 5 6.5-5"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </span>
                   <div>
@@ -455,13 +553,25 @@ export default function App() {
                 </div>
               </div>
             </div>
+
             <div className="map-card">
-              <div className="map-placeholder">
+              <div
+                className="map-placeholder"
+                style={{
+                  backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.85) 35%, rgba(255, 255, 255, 0.65) 60%, rgba(255, 255, 255, 0.4) 100%), radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 38%), url(${mapBackgroundImage})`,
+                  backgroundSize: 'auto, auto, cover',
+                  backgroundPosition: 'left center, top right, center',
+                  backgroundRepeat: 'no-repeat, no-repeat, no-repeat',
+                }}
+              >
                 <div className="map-placeholder__content">
                   <p className="map-placeholder__eyebrow">{siteContent.contact.mapCard.eyebrow}</p>
                   <p className="map-placeholder__title">{siteContent.contact.mapCard.title}</p>
                   <p className="map-placeholder__text">{siteContent.contact.mapCard.description}</p>
-                  <a className="button button--primary map-placeholder__cta" href={siteContent.contact.mapCard.ctaHref}>
+                  <a
+                    className="button button--primary map-placeholder__cta"
+                    href={siteContent.contact.mapCard.ctaHref}
+                  >
                     {siteContent.contact.mapCard.ctaLabel}
                   </a>
                 </div>
@@ -473,11 +583,11 @@ export default function App() {
 
       <footer className="footer">
         <div className="container footer__content">
-          <a className="footer__cta" href="#booking">
-            Book starttid
+          <a className="footer__cta" href="#contact">
+            Kontakt klubben
           </a>
           <p>© 2026 {businessName}</p>
-          <p>Par 3-bane og driving range i Trondheim.</p>
+          <p>9-hulls golfbane på Sævik i Namsos.</p>
         </div>
       </footer>
     </div>
